@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CustomViewProject</string>
+
+    <string name="opinion.last.week">Last week</string>
+    <string name="opinion.last.month">Last month</string>
+    <string name="opinion.all.time">All time</string>
+
+</resources>

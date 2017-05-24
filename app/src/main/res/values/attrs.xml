@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TopTabsComponent">
+        <attr name="tabId" format="integer">
+            <enum name="lastWeek" value="0" />
+            <enum name="lastMonth" value="1" />
+            <enum name="allTime" value="2" />
+        </attr>
+    </declare-styleable>
+</resources>
