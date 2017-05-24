@@ -18,6 +18,7 @@ import static com.project.customviewproject.view.TopTabsView.LAST_WEEK;
 
 public class MainActivity extends AppCompatActivity implements TopTabsView.OnTopTabsViewClickListener {
 
+    // инициализируем таб бар
     @BindView(R.id.topBarView)
     TopTabsView topTabsView;
 
@@ -26,25 +27,33 @@ public class MainActivity extends AppCompatActivity implements TopTabsView.OnTop
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        // инициализируем лисенер для клика на табы
         topTabsView.setOnTopTabsViewClickListener(this);
-        setupFragment(new LastWeekFragment());
+        // задаем текущий таб по умолчанию что бы показывало тот фрагмент который у нас по дефолту установлен в XML
+        onTopTabViewClick(topTabsView.getCurrentTab());
     }
 
+    //дальше по клику врубаем какой хотим фрагмент
     @Override
-    public void onTopTabViewClick(int tabId) {
+    public int onTopTabViewClick(int tabId) {
+        Fragment fragment = null;
         switch (tabId) {
             case LAST_WEEK:
-                setupFragment(new LastWeekFragment());
+                fragment = new LastWeekFragment();
                 break;
             case LAST_MONTH:
-                setupFragment(new LastMonthFragment());
+                fragment = new LastMonthFragment();
                 break;
             case ALL_TIME:
-                setupFragment(new AllTimeFragment());
+                fragment = new AllTimeFragment();
                 break;
         }
+        setupFragment(fragment);
+        return LAST_WEEK;
     }
 
+    //метод который реализует открытие фрагмента
     private void setupFragment(Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()
